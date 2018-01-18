@@ -30,18 +30,28 @@ class App extends Component {
       list,
     };
 
-    this.onDismiss = this.onDismiss.bind(this);
-  }
+    /* this.onDismiss = this.onDismiss.bind(this);  Not needed as using arrow function to define onDismiss */
 
-  onDismiss(id) {
+    this.onSearchChange = this.onSearchChange.bind(this);
+  }
+  
+  onDismiss = (id) => {
     const isNotId = item => item.objectID !== id;
     const updatedList = this.state.list.filter(isNotId);
     this.setState({ list: updatedList });
   }
 
+  
+
   render() {
     return (
       <div className="App">
+        <form>
+          <input 
+            type="text"
+            placeholder="Search..."
+            onChange={this.onSearchChange} />
+        </form>
         {this.state.list.map(item => 
           (
             <div key={item.objectID}>
@@ -54,7 +64,8 @@ class App extends Component {
               <span>
                 <button
                   onClick={() => this.onDismiss(item.objectID)}
-                  type="button">Dismiss
+                  type="button">
+                  Dismiss
                 </button>
               </span>
             </div>
