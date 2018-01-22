@@ -4,7 +4,6 @@ import './App.css';
 import Search from './components/Search';
 import Table from './components/Table';
 
-
 const list = [
   {
     title: 'React',
@@ -38,11 +37,7 @@ const list = [
     points: 3,
     objectID: 3
   }
-];
-
-const isSearched = searchTerm => item => 
-  item.title.toLowerCase().includes(searchTerm.toLowerCase());
-  
+];  
 
 class App extends Component {
 
@@ -70,9 +65,7 @@ class App extends Component {
 
   onSearchChange = event => {
     this.setState({ searchTerm: event.target.value })
-  }
-
-  
+  } 
 
   render() {
     const { searchTerm, list } = this.state;
@@ -81,7 +74,8 @@ class App extends Component {
         <Search
           value={searchTerm}
           onChange={this.onSearchChange}
-        />
+        >Search
+        </Search>
 
         <Table
           list={list}
