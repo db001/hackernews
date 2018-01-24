@@ -23,11 +23,11 @@ class Button extends Component {
   }
 */
 
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({ onClick, className = '', children, type }) =>
     <button
     onClick={onClick}
     className={className}
-    type="button">
+    type={type}>
     {children}
   </button>;
 
