@@ -19,7 +19,7 @@ class App extends Component {
 
     this.state = {
       result: null,
-      searchTerm: DEFAULT_QUERY
+      searchTerm: ''
     };
 
     /*
@@ -58,6 +58,12 @@ class App extends Component {
     this.setState({ searchTerm: event.target.value })
   } 
 
+  onSearchSubmit = event => {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+    event.preventDefault();
+  }
+
   render() {
     const { searchTerm, result } = this.state;
 
@@ -67,17 +73,16 @@ class App extends Component {
           <Search
             value={searchTerm}
             onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
           >Search 
           </Search>
         </div>
 
-        { result ?
+        { result &&
           <Table
             list={result.hits}
-            pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
-          : null
         }
       </div>
     );
